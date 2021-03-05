@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p id="loken">LOKENDRA YADAV</p>
+<p class="welcome">Welcome java</p>
+<p class="welcome">Welcome React</p>
+<p class="welcome">Welcome Flutter</p>
+
+<ul>
+<li>java</li>
+<li>React</li>
+<li>Flutter</li>
+</ul>
+
+
+<script type="text/javascript">
+//Access children of a body
+var child=document.body.children;
+console.log(child);
+
+//Add a new child in a body tag
+
+var para=document.createElement('p');
+var text=document.createTextNode("this is a new Paragraph");
+
+para.appendChild(text);
+console.log(para);
+document.body.appendChild(para);
+
+//access first and last child
+
+var list=document.querySelector("ul");
+
+console.log(list);
+
+console.log(list.firstChild);
+console.log(list.lastChild);
+var firstSibling=loken.nextElementSibling;
+var secondSibling=loken.nextElementSibling.nextElementSibling;
+console.log(list.parentNode);
+</script>
+
+</body>
+</html>

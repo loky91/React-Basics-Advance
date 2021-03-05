@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+   
+<head>
+    <meta charset="utf-8">
+    <title> MY TITLE</title>
+    <script src="js/react.js"></script>
+  
+   <script src="js/react-dom.js"></script>
+  
+   <script src="js/babel.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.0/redux.min.js"></script>
+	
+   
+   </head>
+
+<body>
+<h2>Redux Counter Example</h2> 
+<div id="root"></div> 
+<button type="button" onClick="onIncrementCounter()">ADD</button>
+<button type="button" onClick="onDecrementCounter()">Minus</button>
+
+<script type="text/babel">
+
+function incrementActionCreator(){
+return {
+type:'INCR'
+}
+}
+
+function decrementActionCreator(){
+return{
+type:'DECR'
+}
+}
+
+function reducerCreator(state,action){
+
+switch(action.type){
+case 'INCR':return (state+1);
+case 'DECR': return (state-1);
+default: return state
+}
+}
+
+var store=Redux.createStore(reducerCreator,0);
+var counterId=document.getElementById('root')
+
+function render(){
+counterId.innerText=store.getState();
+}
+
+
+store.subscribe(render);
+
+
+
+
+function onIncrementCounter(){
+store.dispatch(incrementActionCreator()) 
+}
+
+function onDecrementCounter(){
+store.dispatch(decrementActionCreator())
+}
+
+</script>
+</body>
+</html>

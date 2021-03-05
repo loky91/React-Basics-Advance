@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p id="demo1">Show Demo 1</p>
+<p class="demo2">Show Demo 2</p>
+<p class="demo2">Show Demo 3</p>
+
+
+<script type="text/javascript">
+var a=document.getElementById('demo1').innerHTML;
+document.write(a);
+
+
+var b=document.getElementsByClassName('demo2')[1].innerHTML;
+document.write(b);
+
+var c=document.getElementsByTagName('p')[1].innerHTML;
+document.write(c);
+
+//To acess first element
+var d=document.querySelector('p').innerHTML;
+document.write(d);
+</script>
+
+</body>
+</html>

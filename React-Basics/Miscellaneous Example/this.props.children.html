@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+   
+<head>
+    <meta charset="utf-8">
+    <title> MY TITLE</title>
+    <script src="js/react.js"></script>
+  
+   <script src="js/react-dom.js"></script>
+  
+   <script src="js/babel.min.js"></script>
+   </head>
+
+<body>
+ 
+ <div id="root"></div>  
+ <script type="text/babel">
+ class Example extends React.Component {
+  render() {
+    return <div>
+      <div>Children ({this.props.children.length}):</div>
+      {this.props.children}
+    </div>;
+  }
+}
+
+class Widget extends React.Component {
+  render() {
+    return <div>
+      <div>First <code>Example</code>:</div>
+      <Example>
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+      </Example>
+      <div>Second <code>Example</code> with different children:</div>
+      <Example>
+        <div>A</div>
+        <div>B</div>
+      </Example>
+    </div>;
+  }
+}
+
+ReactDOM.render(
+  <Widget/>,
+  document.getElementById("root")
+);
+
+</script>
+</body>
+</html>

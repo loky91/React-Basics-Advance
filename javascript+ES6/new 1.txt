@@ -1,0 +1,478 @@
+	-JavaScript was originally named JavaScript in hopes of capitalizing on the success of Java.
+Netscape then submitted JavaScript to ECMA International for Standardization. (ECMA is an organization that standardizes information)
+This results in a new language standard, known as ECMAScript.
+
+Put simply, ECMAScript is a standard. While JavaScript is the most popular implementation of that standard. JavaScript implements ECMAScript and builds on top of it.
+	-Not all browsers support every feature of ES6. Therefore, if you want to use a new feature of ES6 and expect the old browsers understand it, you must use a transpiler.
+
+-A transpiler converts the latest JavaScript code back to an older version so that the old browsers can understand.
+
+-https://babeljs.io/
+Advantages of using BabelJS
+---------------------------
+BabelJS can be used along with gulp, webpack, flow, react, typescript, etc. making it very powerful and can be used with big project making developer’s life easy.
+
+BabelJS also works along with react JSX syntax and can be compiled in JSX form.
+Disadvantages of using BabelJS
+------------------------------
+BabelJS code changes the syntax while transpiling which makes the code difficult to understand when released on production.
+
+The code transpiled is more in size when compared to the original code.
+(x, y) => {return x + y};
+--------------------------
+(function (x, y) {
+  return x + y;
+});
+--------------------------
+
+var sum = (a, b) => a + b;
+console.log(sum(2, 3));
+
+
+-
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+-ES6 Concepts
+
+---------------
+#Let key word
+---------------
+ES6 provides a new way of declaring a variable by using the let keyword. The let keyword works similar to the var keyword, except that the variables it declares are block-scoped.
+
+var keyword, the scope of the variable is global-scoped if you declare it outside of a function or function-scoped in case you declare it inside a function.
+
+let x = 10;
+if (x == 10) {
+    let x = 20;
+    console.log(x); // 20;
+}
+console.log(x); // 10
+---------------
+var is a global 
+var a = 10;
+console.log(window.a); // 10
+---------------
+However, when you use the let keyword to declare a variable, that variable is not attached to the global object as a property. 
+let b = 20;
+console.log(window.b); // undefined
+
+--------------
+#1
+for (var i = 0; i < 5; i++) {
+    setTimeout(function () {
+        console.log(i);
+    }, 1000);
+}
+#2
+In ES6, the let keyword declares a new variable in each loop iteration, therefore, you just need to replace the var keyword by the let keyword to fix the issue.
+for (let i = 0; i < 5; i++) {
+    setTimeout(function () {
+        console.log(j);
+    }, 1000);
+}
+To make the code completely ES6 style, you can use the arrow function as follows:
+#3
+for (let i = 0; i < 5; i++) {
+    setTimeout(() => console.log(i), 1000);
+}
+---------------
+#Const key word
+---------------
+1.The const keyword creates a read-only reference to a value
+2.The const keyword works like the let keyword. But the const keyword creates block-scoped variables whose values can’t be reassigned.
+--------------------
+#1
+let a = 10;
+a = 20;
+a = a + 5;
+console.log(a); // 35
+--------------------
+#2
+const RATE = 0.1;
+RATE = 0.2; // TypeError
+
+#3
+const RED; // SyntaxError
+
+The const keyword ensures that the variable it creates is read-only.
+It does not mean that const variable reference is immutable.
+#4
+const person = { age: 20 };
+person.age = 30; // OK
+console.log(person.age); // 30
+
+Even though the person variable is a constant. However, you can change the value of its property. But you cannot reassign a different value to the person constant.
+#4
+person = {age: 40}; // TypeError
+If you want the value of the person object to be immutable
+
+#5
+const person = Object.freeze({age: 20});
+person.age = 30; // TypeError
+
+Iteration
+---------
+ES6 provides a new construct called for...of that allows you to create a loop iterating over iterable objects such as an array, a Map, or a Set, etc.
+#1
+var scores = [75, 80, 95];
+for (let score of scores) {
+    console.log(score);
+}
+If you don’t intend to modify the score variable inside the loop, you declare it using the const keyword instead.
+#2
+var scores = [75, 80, 95];
+for (const score of scores) {
+    console.log(score);
+}
+---------------
+# Object literals
+---------------
+
+Earlier
+#1
+function createMachine(name, status) {
+    return {
+        name: name,
+        status: status
+    };
+}
+Now
+#2
+function createMachine(name, status) {
+    return {
+        name,
+        status
+    };
+}
+#3
+var server = {
+    name: 'server',
+    restart() {
+        console.log(`The ${this.name} is restarting...`);
+    }
+};
+#4
+var server = {
+    name: 'server',
+    restart: function () {
+        console.log('The' + this.name + ' is restarting...');
+    }
+};
+
+---------------
+#Argument Vs Parameter
+---------------
+parameters are what we specify in the function declaration whereas the arguments are what we pass to the function.
+#1
+function add(x,y) {
+   return x + y;
+}
+ 
+add(100,200);
+n this example, x and y are function’s parameters, and the values that we passed to the add() function ( 100 and 200) are arguments.
+#2
+Default Parameter
+function foo(bar) {
+    console.log(bar);
+}
+ 
+foo(); // undefined
+
+#3
+function foo(bar) {
+    bar = typeof bar !== 'undefined' ? bar : 10;
+    console.log(bar);
+}
+foo(); // 10
+
+#4
+function foo(bar = 10) {
+    console.log(bar);
+}
+ 
+foo(); // 10
+foo(undefined); // 10
+foo(20); //20
+
+n the first function call, we didn’t pass any argument to the foo() function, therefore bar parameter has the default value of 10.
+In the second function call, we passed undefined to the foo() function, hence the bar parameter also has the default value of 10.
+In the third call, we passed the default value of 20 to the foo() function, therefore bar parameter takes 20 as the value.
+
+#5
+function put(toy, toyBox = []) {
+    toyBox.push(toy);
+    return toyBox;
+}
+ 
+console.log(put('Toy Car'));
+// -> ['Toy Car']
+console.log(put('Teddy Bear'));
+// -> ['Teddy Bear'], not ['Toy Car','Teddy Bear']
+
+
+
+---------------
+# REST Operator
+---------------
+#1
+function sum(...args) {
+    let total = 0;
+    for (const a of args) {
+        total += a;
+    }
+    return total;
+}
+ 
+sum(1, 2, 3); // 6
+
+#2
+function sum(...args) {
+    return args.filter(e => typeof e === 'number')
+        .reduce((prev, curr)=> prev + curr);
+}
+
+#3
+const concat = (...args) => {
+    return args.reduce((prev, curr) => prev + ' ' + curr);
+};
+let message = concat('JavaScript', 'Rest', 'Parameters'); // =>
+console.log(message); // JavaScript Rest Parameters
+---------------
+# SPREAD Operator
+---------------
+
+#1
+let initialChars = ['A', 'B'];
+let chars = [...initialChars, 'C', 'D'];
+console.log(chars); // ["A", "B", "C", "D"]
+#2
+let numbers = [1, 2];
+let moreNumbers = [3, 4];
+let allNumbers = [...numbers, ...moreNumbers];
+console.log(allNumbers); // [1, 2, 3, 4]
+
+---------------
+# Iterating Over an Array
+---------------
+#1
+
+let scores = [80, 90, 70];
+for (let score of scores) {
+    score = score + 5;
+    console.log(score);
+}
+If you don’t change variable inside the loop, you should use the  const instead of let as follows:
+#2
+
+for (const score of scores) {
+    console.log(score);
+}
+// 80
+// 90
+// 70
+
+The following example illustrates the differences between for...of and for...in
+#3
+
+let numbers = [6, 7, 8];
+numbers.foo = "foo";
+ 
+for (let i in numbers) {
+    console.log(i);
+}
+// 0
+// 1
+// 2
+// foo
+for (let i of numbers) {
+    console.log(i);
+}
+// 6
+// 7
+// 8
+--------------------
+Object Destructuring
+--------------------
+let person = {name: "Peter", age: 28};
+
+let {name, age} = person; // Object destructuring assignment
+
+alert(name); // Peter
+alert(age); // 28
+-----------------------------------------------------------------
+Additional
+-----------------------------------------------------------------
+#1
+let roles = new Set();
+roles.add('admin')
+    .add('editor')
+    .add('subscriber');
+	
+	
+	
+	
+	for (let role of roles) {
+    console.log(role);
+}
+
+roles.forEach(role => console.log(role.toUpperCase()));
+
+#2
+
+const map = new Map([
+  [1, 'one'],
+  [2, 'two'],
+  [3, 'three']
+]);
+
+// Instead of: map.set(4, 'four');
+const map2 = new Map([...map, [4, 'four']]);
+
+// Instead of: map.delete(1);
+const map3 = new Map([...map].filter(([key]) => key !== 1));
+
+
+
+----------
+Map
+----------
+The map() method creates a new array with the results of calling a provided function on every element in the calling array
+#1
+var arr=[5,6,7];
+let map=arr.map(x=>x*7);
+console.map(map);
+#2
+const double = x => 2 * x;  
+[1, 2, 3].map(double);  
+// [2, 4, 6]
+
+
+#
+ 
+var animals=[
+{
+name:'aa',
+species:'bb'
+},
+{
+name:'cc',
+species:'dd'
+},
+{
+name:'ee',
+species:'ff'
+}
+];
+
+var dogs=[];
+for(var i=0;i<animals.length;i++){
+if(animals[i].species==='bb'){
+dogs.push(animals[i]);
+}
+}
+console.log(dogs);
+
+var dogs=animals.filter(function(animal){
+return animal.species=='bb';
+});
+console.log(dogs);
+
+var dogs=animals.map(function(animal){
+return animal.name+'is a'+animal.species;
+});
+console.log(dogs);
+
+----------
+Reduce
+----------
+#1
+var total = [0, 1, 2, 3].reduce(function(a, b){ return a + b; }); 
+console.log("total is : " + total ); 
+
+#2
+const items = [
+  { name: 'a', content: { /* ... */ }},
+  { name: 'b', content: { /* ... */ }},
+  { name: 'c', content: { /* ... */ }}
+]
+
+const b = items.reduce((result, item) => {
+  if (item.name === 'b') { result = item }
+  return result
+}, null)
+
+Iterate over an array to count a property of each item
+const items = [
+  { name: 'a', content: { value: 1 }},
+  { name: 'b', content: { value: 2 }},
+  { name: 'c', content: { value: 3 }}
+]
+let count = 0
+for (const item of items) {
+  count += item.content.value
+}
+
+can written as
+
+const count = items.reduce((result, { content: { value } }) => result + value, 0)
+
+
+
+// 6
+----------
+Filter
+----------
+const filterEven = x => x%2 === 0;  
+[1, 2, 3].filter(filterEven);  
+// [2]
+
+-------------
+FindIndex,Find
+------------
+#1
+var numbers = [1, 2, 3]; 
+var oddNumber = numbers.findIndex((x) => x % 2 == 1); 
+console.log(oddNumber); // 0 
+#2
+var numbers = [1, 2, 3]; 
+var oddNumber = numbers.find((x) => x % 2 == 1); 
+console.log(oddNumber); // 1
+
+
+
+-------------
+Combination of Map,Reduce,Filter
+-------------
+var cars = [{
+name: "Lamborghini",
+maxSpeed:320,
+beauty:99
+},{
+name: "Lamborghini",
+maxSpeed:340,
+beauty:99
+},{
+name: "Ferrari",
+maxSpeed:310,
+beauty:99
+},{
+name: "Porsche",
+maxSpeed:330,
+beauty:99
+},{
+name: "Lamborghini",
+maxSpeed:300,
+beauty:99
+}];
+
+console.log(cars.filter((x)=>x.name=='Lamborghini').map((x)=>x.beauty+x.maxspeed).reduce((x,y)=>x+y));
+
+Result:1243
+#filter- The filter finds all the cars whose name is Lamborghini.
+
+#map- The map works on the array returned by the filter and sums up the beauty and top_speed properties.
+Result:[419,434,390]
+reduce- reduce takes the array returned by the map and sums all the values thus returning the total of all the lamborghini.
+Result:1234

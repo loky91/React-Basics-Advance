@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+   
+<head>
+    <meta charset="utf-8">
+    <title> MY TITLE</title>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+
+<body>
+ 
+ <div id="root"></div>  
+ <script type="text/babel">
+ 
+ class App extends React.Component{
+render(){
+return(
+
+  <div>
+  <Helloworld name="x"/>
+  <Helloworld name="y"/>
+  </div>  
+);
+}
+ }
+ function Helloworld(props){
+    console.log(props.name);
+    return <h1>Hello {props.name}</h1>;
+ }
+ ReactDOM.render(<App/>,document.getElementById('root'));
+ 
+</script>
+</body>
+</html>
