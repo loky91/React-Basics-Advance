@@ -1,0 +1,51 @@
+ <!DOCTYPE html>
+
+<html>
+ 
+ <head>
+  
+  <meta charset="UTF-8" />
+ 
+   <title>choose colors</title>
+ 
+   <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+
+ </head>
+ <body>
+ <script type="text/babel">
+ class Color extends React.Component{
+ constructor(props){
+ super(props);
+ const c=props.params;
+ console.log(c);
+ this.state={
+ 
+ selected:"selected"
+ 
+ this.colorChange=this.colorChange.bind(this);
+ }
+  colorChange(e){
+ this.setState(c.map((value) =>
+    	{<option>{value}</option>});
+  }
+ 
+ }
+ render(){
+ return(
+ <select id="lang" >
+                  this.colorChange
+                  
+               </select>
+		);	   
+			}
+			}
+			const colorName=["white","green","red","purple"];
+			ReactDOM.render(<Color params={colorName}/>,document.getElementById('container'));
+	 </script>		   
+</body>
+			   
+			   
+			   </html>

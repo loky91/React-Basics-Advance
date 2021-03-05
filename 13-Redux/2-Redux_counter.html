@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Redux with JS</title>
+		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.0/redux.min.js"></script>
+	</head>
+	
+	<body>
+	<h2>Redux Counter Example</h2>
+	<div id="counter"></div>
+	<button type="button" onclick="onIncrement()">+</button>
+	<button type="button" onClick="onDecrement()">-</button>
+	
+	<script>
+	function incrementActionCreator(){
+	return 	{
+	type:'INCR'
+	}
+	
+	}
+	function decrementActionCreator(){
+	return{
+	type:'DECR'
+	}
+	}
+	
+	
+	function reducerCreator(state,action){
+	switch(action.type){
+	case 'INCR':return (state+1);
+	case 'DECR':return (state-1);
+	default: return state
+	}
+	}
+	
+	var store=Redux.createStore(reducerCreator,0);
+	
+	var counterId=document.getElementById('counter');
+	
+	function render(){
+	counterId.innerText=store.getState();
+	}
+	
+	store.subscribe(render);
+	
+	function onIncrement(){
+	store.dispatch(incrementActionCreator());
+	}
+	function onDecrement(){
+	store.dispatch(decrementActionCreator());
+	}
+	</script>
+	
+	</body>
+	
+	
+	
+	</html>

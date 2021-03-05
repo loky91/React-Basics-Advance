@@ -1,0 +1,46 @@
+<html>
+ 
+ <head>
+  
+ <meta charset="UTF-8" />
+ 
+   <title>Lists</title>
+ 
+   <script src="js/react.js"></script>
+  
+   <script src="js/react-dom.js"></script>
+  
+   <script src="js/babel.min.js"></script>
+
+ </head>
+ 
+ <body>
+ <div id="root"></div>
+ <script type="text/babel">
+ function Show(props){
+	return <h1>{props.number}</h1>
+ }
+ class Counter extends React.Component{
+	 state={
+		value:0
+	 };
+ 
+	 handleOnClick=()=>{
+		 let count=this.state.value;
+		 this.setState({value:count+1});
+	 }
+	 render(){
+		 return(
+			 <div>
+				 				 <Show number={this.state.value}/>
+								 <button onClick={this.handleOnClick}>+</button>
+
+			 </div>
+		 );
+	 }
+ }
+ 
+ ReactDOM.render(<Counter/>,document.getElementById('root'));
+ </script>
+ </body>
+ </html>

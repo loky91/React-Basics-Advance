@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html>
+ 
+ <head>
+  
+  <meta charset="UTF-8" />
+ 
+   <title>choose colors</title>
+ 
+   <script src="js/react.js"></script>
+  
+   <script src="js/react-dom.js"></script>
+  
+   <script src="js/babel.min.js"></script>
+
+ </head>
+ <body>
+ <div id="container"></div>
+ <script src="text/babel">
+
+ function NumberList(props)
+	{
+  		const numbers = props.params;
+  		const listValues = numbers.map((value) =>
+    	<option>{value}</option>
+  		);
+  		return (
+    		<select>{listValues}</select>
+  		);
+	}
+
+	const values = ["red", "green","white","purple","yellow"];
+	ReactDOM.render(
+	  <NumberList params={values} />,
+	  document.getElementById('lists')
+	);
+
+
+ 
+ 
+ </script>
+ </body>
+ </html>

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Redux with JS</title>
+		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.0/redux.min.js"></script>
+	</head>
+	
+	<body>
+		<h2>Redux Counter Example</h2>
+		<div id="counter"></div>
+		<button type="button" onclick="increment()">+</button>
+		<button type="button" onclick="decrement()">-</button>
+		
+		<script>
+			debugger;
+			// Action Creators
+			function incrementAction(){
+				return {
+					type: 'INCR'
+				}
+			}
+			
+			function decrementAction(){
+				return {
+					type: 'DECR'
+				}
+			}
+			
+			// Reducers
+			function counterReducer(state, action){
+				switch(action.type){
+					case 'INCR': return (state+1);
+					case 'DECR': return (state-1);
+					default: return state;
+				}
+			}
+			
+			// Store
+			var store = Redux.createStore(counterReducer, 0);
+			
+			var counterId = document.getElementById('counter');
+			
+			function renderOne(){
+				counterId.innerText = store.getState();
+			}
+				
+			renderOne();
+			
+			store.subscribe(renderOne);
+			
+			
+			
+			function increment(){
+				//var incrObj=incrementAction();
+				store.dispatch(incrementAction());
+			}
+			
+			function decrement(){
+				store.dispatch(decrementAction());
+			}
+			
+		</script>
+		
+	</body>
+</html>
